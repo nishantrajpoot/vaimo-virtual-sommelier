@@ -180,7 +180,7 @@ button.go-to-wine {
   color: #ffffff;
 }
 
-iframe#wine-view body {
+body {
   background: transparent!important;
 }
 img[alt="Delhaize wine listings"] {
