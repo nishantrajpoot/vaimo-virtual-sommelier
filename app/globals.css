@@ -95,11 +95,10 @@ body {
 
 /* Wine Popup */
 .wine-popup {
-    border-radius: 15px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    min-width: 450px;
-    max-width: 480px;
+  border-radius: 15px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  width: 480px
 }
 .wine-popup::-webkit-scrollbar {
   display: none;
