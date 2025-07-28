@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom scrollbar for chatbot */
+.chatbot-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chatbot-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.chatbot-scroll::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 2px;
+}
+
+.chatbot-scroll::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+/* Pulse icon css */
+.pulse-wrapper {
+     right: 3rem;
+     bottom: 6rem;
+}
+
+.chat-tooltip {
+  position: absolute;
+  right: 4.5rem;
+  top: 0;
+  background: white;
+  color: #333;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  width: 200px;
+}
+
+.chat-tooltip .tooltip-arrow {
+  position: absolute;
+  right: -8px;
+  top: 28px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid white;
+}
+
+.pulse-wrapper:hover .chat-tooltip {
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 0.2s;
+}
+
+/* Wine Popup */
+.wine-popup {
+    border-radius: 15px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    min-width: 450px;
+    max-width: 480px;
+}
+.wine-popup::-webkit-scrollbar {
+  display: none;
+}
+.wine-popup .red-title-strip {
+  position: relative;
+  padding: .7rem 1rem;
+}
+
+.wine-popup .wine-title {
+  text-align: center;
+  margin: 0 25px;
+}
+.wine-popup .close-popup {
+  position: absolute;
+  right: 10px;
+}
+
+.wine-popup .circle-bg {
+    width: 160px;
+    height: 160px;
+    background-color: #f3f1e9;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.wine-popup .wine-image {
+  position: relative;
+}
+.wine-popup .thumbnail {
+  z-index: 1;
+  mix-blend-mode: multiply;
+  clip-path: circle(50%);
+}
+
+.quantity-selector .deduct {
+  background-color: transparent;
+  color: #d1223e;
+  border: 2px solid #d1223e;
+}
+.quantity-selector .add {
+   background-color: #d1223e;
+   color: #ffffff;
+}
+button.add-to-cart-btn {
+  border: 2px solid #d1223e;
+      border-radius: 25px;
+}
+button.go-to-wine {
+  color: #d1223e;
+  border: 2px solid #d1223e;
+  padding: .6rem;
+  margin-top: 0!important;
+  border-radius: 25px;
+      
+}
+
+.circular-wine-price {
+  z-index: 2;
+  background-color: #d1223e;
+  height: max-content;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 5px 8px;
+  position: absolute;
+  left: 0;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.price-value {
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+.more-details {
+    margin-top: 3px!important;
+}
+.wine-popup .close-popup:hover {
+  color: #ffffff;
+}

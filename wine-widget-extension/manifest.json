@@ -1,0 +1,17 @@
+{
+    "manifest_version": 3,
+    "name": "Wine Widget for Delhaize",
+    "version": "1.0",
+    "description": "Injects a wine recommendation widget on Delhaize's site",
+    "permissions": ["scripting", "activeTab"],
+    "content_scripts": [
+      {
+        "matches": ["https://www.delhaize.be/*"],
+        "js": ["content.js"]
+      }
+    ],
+    "icons": {
+      "48": "icon.png"
+    }
+  }
+  
