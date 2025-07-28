@@ -180,3 +180,10 @@ button.go-to-wine {
 .wine-popup .close-popup:hover {
   color: #ffffff;
 }
+
+iframe#wine-view body {
+  background: transparent!important;
+}
+img[alt="Delhaize wine listings"] {
+  display: none;
+}
