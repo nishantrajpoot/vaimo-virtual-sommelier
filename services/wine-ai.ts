@@ -103,7 +103,7 @@ function extractRecommendationsFromResponse(response: string, wines: Wine[]): Wi
   */
 
   const idSection = response.match(/RECOMMENDED_IDS:?\s*\[([^\]]+)\]/i)
-  console.log('ideSection-', idSection)
+  console.log('idSection-', idSection)
   if (idSection) {
     const ids = idSection[1]
       .split(/[,\s]+/)
