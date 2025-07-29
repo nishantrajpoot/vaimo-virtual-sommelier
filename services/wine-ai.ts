@@ -85,10 +85,12 @@ Please analyze this query intelligently and recommend 7-8 specific wines from th
 }
 
 /**
- * Extract up to 4 wine recommendations by matching their UUIDs in the AI response.
+ * Extract up to 8 wine recommendations by matching their UUIDs in the AI response.
  */
 function extractRecommendationsFromResponse(response: string, wines: Wine[]): Wine[] {
   // 1) Parse explicit ID list from response
+  
+  /*
   const idSection = response.match(/RECOMMENDED_IDS:?\s*\[([^\]]+)\]/i)
   if (idSection) {
     const ids = idSection[1]
@@ -98,6 +100,27 @@ function extractRecommendationsFromResponse(response: string, wines: Wine[]): Wi
     const found = wines.filter((wine) => ids.includes(wine.id!))
     if (found.length > 0) return found.slice(0, 8)
   }
+  */
+
+  const idSection = response.match(/RECOMMENDED_IDS:?\s*\[([^\]]+)\]/i)
+  if (idSection) {
+    const ids = idSection[1]
+      .split(/[,\s]+/)
+      .map((s) => s.replace(/"/g, "").trim())
+      .filter(Boolean)
+
+    // Create a quick ID → wine lookup map
+    const wineMap = new Map(wines.map(w => [w.id, w]))
+
+    // Map IDs to wines in the exact order given by the model
+    const foundOrdered = ids
+      .map(id => wineMap.get(id))
+      .filter((wine): wine is Wine => Boolean(wine)) // remove undefined
+
+    if (foundOrdered.length > 0) return foundOrdered.slice(0, 8)
+  }
+
+  
   // 2) Fallback to name-based matching if no IDs found
   const recsByName: Wine[] = []
   const responseText = response.toLowerCase()
