@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
     }
     let userPrompt = `User query: "${message}"
 
-Please analyze this query and recommend 3-4 specific wines from the available dataset. Consider:
+Please analyze this query and recommend 7-8 specific wines from the available dataset. Consider:
 - Wine preferences (color, type, grape variety)
 - Budget constraints 
 - Food pairings mentioned
@@ -165,7 +165,7 @@ function extractRecommendationsFromResponse(response: string, wines: Wine[]): Wi
 
 function getSystemPrompt(language: Language, wines: Wine[]): string {
   // Provide a limited wine dataset sample as context (reduce token size)
-  const wineDataSample = wines.slice(0, 20).map((wine) => ({
+  const wineDataSample = wines.slice(0, 300).map((wine) => ({
     id: wine.id,
     name: wine.Product_name,
     price: wine.Price,
@@ -189,7 +189,7 @@ Your capabilities:
    - Consider budget, occasion, and preferences, using the Price field as numeric
 
 Guidelines:
-- Always recommend 3-4 specific wines from the available inventory
+- Always recommend 7-8 specific wines from the available inventory
 - Mention exact wine names from the dataset
 - Explain why each wine fits the user's request
 - Handle spelling variations and typos gracefully
@@ -227,7 +227,7 @@ Vos capacités:
 - Considérer le budget, l'occasion, et les préférences
 
 Directives:
-- Recommandez toujours 3-4 vins spécifiques de l'inventaire disponible
+- Recommandez toujours 7-8 vins spécifiques de l'inventaire disponible
 - Mentionnez les noms exacts des vins du dataset
 - Expliquez pourquoi chaque vin correspond à la demande
 - Gérez les variations d'orthographe et fautes de frappe avec souplesse
@@ -264,7 +264,7 @@ Uw mogelijkheden:
 - Budget, gelegenheid en voorkeuren overwegen
 
 Richtlijnen:
-- Beveel altijd 3-4 specifieke wijnen aan uit de beschikbare voorraad
+- Beveel altijd 7-8 specifieke wijnen aan uit de beschikbare voorraad
 - Noem exacte wijnnamen uit de dataset
 - Leg uit waarom elke wijn past bij het verzoek
 - Behandel spellingsvariaties en typefouten soepel

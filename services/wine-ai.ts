@@ -28,7 +28,7 @@ export async function getWineAdvice(query: WineQuery): Promise<WineResponse> {
 Available wines dataset:
 ${JSON.stringify(wines, null, 2)}
 
-Please analyze this query intelligently and recommend 3-4 specific wines from the dataset. Handle typos and variations (like "red-wine" vs "red wine") gracefully. Consider wine preferences, budget, food pairings, and occasion.`
+Please analyze this query intelligently and recommend 7-8 specific wines from the dataset. Handle typos and variations (like "red-wine" vs "red wine") gracefully. Consider wine preferences, budget, food pairings, and occasion.`
   // Exclude any wine IDs already recommended
   if ((query as any).excludeIds?.length > 0) {
     userPrompt += `\n\nExclude these wine IDs: ${JSON.stringify((query as any).excludeIds)}`
@@ -225,14 +225,14 @@ Your capabilities:
    - Consider budget, occasion, and preferences, converting Price field to numbers for price-based filtering
 
 Guidelines:
-- Always recommend 3-4 specific wines from the available inventory
+- Always recommend 7-8 specific wines from the available inventory
 - Mention exact wine names from the dataset
 - Explain why each wine fits the user's request
 - Handle spelling variations and typos gracefully
 - Consider price ranges, wine types, and occasions
    - Provide food pairing suggestions when relevant
    - Be enthusiastic but professional
-   - After listing 3-4 wines, append exactly:
+   - After listing 7-8 wines, append exactly:
      RECOMMENDED_IDS: ["<id1>", "<id2>", ...]
      where each <id> matches the 'id' field in the wine data
 `,
@@ -247,7 +247,7 @@ Vos capacités:
 - Considérer le budget, l'occasion, et les préférences
 
 Directives:
-- Recommandez toujours 3-4 vins spécifiques de l'inventaire disponible
+- Recommandez toujours 7-8 vins spécifiques de l'inventaire disponible
 - Mentionnez les noms exacts des vins du dataset
 - Expliquez pourquoi chaque vin correspond à la demande
 - Gérez les variations d'orthographe et fautes de frappe avec souplesse
@@ -265,7 +265,7 @@ Uw mogelijkheden:
 - Budget, gelegenheid en voorkeuren overwegen
 
 Richtlijnen:
-- Beveel altijd 3-4 specifieke wijnen aan uit de beschikbare voorraad
+- Beveel altijd 7-8 specifieke wijnen aan uit de beschikbare voorraad
 - Noem exacte wijnnamen uit de dataset
 - Leg uit waarom elke wijn past bij het verzoek
 - Behandel spellingsvariaties en typefouten soepel
