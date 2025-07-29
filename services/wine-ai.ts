@@ -103,20 +103,22 @@ function extractRecommendationsFromResponse(response: string, wines: Wine[]): Wi
   */
 
   const idSection = response.match(/RECOMMENDED_IDS:?\s*\[([^\]]+)\]/i)
+  console.log('ideSection-', idSection)
   if (idSection) {
     const ids = idSection[1]
       .split(/[,\s]+/)
       .map((s) => s.replace(/"/g, "").trim())
       .filter(Boolean)
 
-    // Create a quick ID → wine lookup map
+      console.log('ids-', ids)
+      // Create a quick ID → wine lookup map
     const wineMap = new Map(wines.map(w => [w.id, w]))
 
     // Map IDs to wines in the exact order given by the model
     const foundOrdered = ids
       .map(id => wineMap.get(id))
       .filter((wine): wine is Wine => Boolean(wine)) // remove undefined
-
+      console.log('foundOrdered-', foundOrdered)
     if (foundOrdered.length > 0) return foundOrdered.slice(0, 8)
   }
 
