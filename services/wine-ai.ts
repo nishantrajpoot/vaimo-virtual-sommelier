@@ -16,10 +16,25 @@ export interface WineResponse {
   needsMoreInfo?: boolean
 }
 
+function shuffle<T>(array: T[]): T[] {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 // @ts-nocheck
 // Suppress type incompatibilities with AI SDK
 export async function getWineAdvice(query: WineQuery): Promise<WineResponse> {
-  const { message, language, wines } = query
+  
+// to add randomness in data
+  /*const { message, language, wines } = query*/
+
+  const { message, language } = query
+  const wines = shuffle(query.wines)
+
 
   // Generate AI response with full wine dataset
   const systemPrompt = getSystemPrompt(language, wines)
