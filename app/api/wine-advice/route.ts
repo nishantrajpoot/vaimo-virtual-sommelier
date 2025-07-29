@@ -137,6 +137,8 @@ function getSimpleFallback(message: string, wines: Wine[]): Wine[] {
 function extractRecommendationsFromResponse(response: string, wines: Wine[]): Wine[] {
   // 1) Try to parse explicit ID list
   const idSection = response.match(/RECOMMENDED_IDS:?\s*\[([^\]]+)\]/i)
+  console.log('idSection-', idSection)
+  /*
   if (idSection) {    
     const ids = idSection[1]
       .split(/[,\s]+/)
@@ -146,8 +148,27 @@ function extractRecommendationsFromResponse(response: string, wines: Wine[]): Wi
     if (found.length > 0) {
       return found.slice(0, 4)
     }
+  }*/
+
+  if (idSection) {
+    const ids = idSection[1]
+      .split(/[,\s]+/)
+      .map((s) => s.replace(/"/g, "").trim())
+      .filter(Boolean)
+
+      console.log('ids-', ids)
+      // Create a quick ID → wine lookup map
+    const wineMap = new Map(wines.map(w => [w.id, w]))
+
+    // Map IDs to wines in the exact order given by the model
+    const foundOrdered = ids
+      .map(id => wineMap.get(id))
+      .filter((wine): wine is Wine => Boolean(wine)) // remove undefined
+      console.log('foundOrdered-', foundOrdered)
+    if (foundOrdered.length > 0) return foundOrdered.slice(0, 8)
   }
   // 2) Fallback to name-based matching if no IDs found
+/*  
   const recsByName: Wine[] = []
   const responseText = response.toLowerCase()
   for (const wine of wines) {
@@ -159,6 +180,38 @@ function extractRecommendationsFromResponse(response: string, wines: Wine[]): Wi
   if (recsByName.length > 0) {
     return recsByName
   }
+*/
+
+  // 2) Fallback: match wines by numbered titles like "1. Moet & Chandon | Champagne..."
+  const titleRegex = /^\d+\.\s+(.*)$/gm;
+  const titles: string[] = [];
+
+  let match;
+  while ((match = titleRegex.exec(response)) !== null) {
+    titles.push(match[1].trim());
+  }
+
+  const matchedByTitle = titles
+    .map(title =>
+      wines.find(w => w.Product_name.toLowerCase() === title.toLowerCase())
+    )
+    .filter((wine): wine is Wine => Boolean(wine));
+
+  if (matchedByTitle.length > 0) return matchedByTitle.slice(0, 8);
+
+  // 3) Fallback to name-based substring matching (case-insensitive)
+  const recsByName: Wine[] = [];
+  const responseText = response.toLowerCase();
+  for (const wine of wines) {
+    if (recsByName.length >= 8) break;
+    if (wine.Product_name && responseText.includes(wine.Product_name.toLowerCase())) {
+      recsByName.push(wine);
+    }
+  }
+  if (recsByName.length > 0) {
+    return recsByName;
+  }
+
   // 3) Fallback to category-based selection
   return getIntelligentFallback(wines)
 }
