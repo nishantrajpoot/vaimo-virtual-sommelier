@@ -191,10 +191,22 @@ function extractRecommendationsFromResponse(response: string, wines: Wine[]): Wi
     titles.push(match[1].trim());
   }
 
+  // Helper: normalize and strip accents, punctuation, extra whitespace
+  function normalize(text: string): string {
+    return text
+      .toLowerCase()
+      .normalize("NFD")                      // decompose accents
+      .replace(/[\u0300-\u036f]/g, "")      // strip accents
+      .replace(/[^\w\s]/g, "")              // remove punctuation
+      .replace(/\s+/g, " ")                 // collapse whitespace
+      .trim();
+  }
+
   const matchedByTitle = titles
-    .map(title =>
-      wines.find(w => w.Product_name.toLowerCase() === title.toLowerCase())
-    )
+    .map(title => {
+      const normTitle = normalize(title);
+      return wines.find(w => normalize(w.Product_name).startsWith(normTitle));
+    })
     .filter((wine): wine is Wine => Boolean(wine));
 
   if (matchedByTitle.length > 0) return matchedByTitle.slice(0, 8);
