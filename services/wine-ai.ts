@@ -57,21 +57,18 @@ Please analyze this query intelligently and recommend 7-8 specific wines from th
 
     return {
       message: text,
-      recommendations: recommendations.length > 0 ? recommendations : wines.slice(0, 3),
+      recommendations: recommendations.length > 0 ? recommendations : wines.slice(0, 8),
     }
   } catch (error) {
     console.error("AI service error:", error)
     // Fallback to non-AI response if API fails
     return {
       message: generateFallbackResponse(message, wines, language),
-      recommendations: wines.slice(0, 3),
+      recommendations: wines.slice(0, 8),
     }
   }
 }
 
-/**
- * Extract up to 4 wine recommendations by matching their UUID in the AI response.
- */
 /**
  * Extract up to 4 wine recommendations by matching their UUIDs in the AI response.
  */
@@ -84,13 +81,13 @@ function extractRecommendationsFromResponse(response: string, wines: Wine[]): Wi
       .map((s) => s.replace(/"/g, "").trim())
       .filter(Boolean)
     const found = wines.filter((wine) => ids.includes(wine.id!))
-    if (found.length > 0) return found.slice(0, 4)
+    if (found.length > 0) return found.slice(0, 8)
   }
   // 2) Fallback to name-based matching if no IDs found
   const recsByName: Wine[] = []
   const responseText = response.toLowerCase()
   for (const wine of wines) {
-    if (recsByName.length >= 4) break
+    if (recsByName.length >= 8) break
     if (wine.Product_name && responseText.includes(wine.Product_name.toLowerCase())) {
       recsByName.push(wine)
     }
