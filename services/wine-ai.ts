@@ -124,35 +124,48 @@ function extractRecommendationsFromResponse(response: string, wines: Wine[]): Wi
 
   
   // 2) Fallback to exact name matching from numbered list in response
-  const lines = response.split(/\r?\n/)
-  const numbered = lines.filter((l) => /^\s*\d+\./.test(l))
-  const nameMap = new Map(wines.map((w) => [w.Product_name.trim().toLowerCase(), w]))
-  const exactMatches: Wine[] = []
+  const lines = response.split(/\r?\n/);
+  const numbered = lines.filter((l) => /^\s*\d+\./.test(l)); // only numbered lines
+  
+  // Create a map of normalized product names for fast lookup
+  const nameMap = new Map(
+    wines.map((w) => [w.Product_name.trim().toLowerCase(), w])
+  );
+  
+  const exactMatches: Wine[] = [];
+  
   for (const line of numbered) {
-    if (exactMatches.length >= 8) break
-    // remove leading number prefix
-    const txt = line.replace(/^\s*\d+\.\s*/, '').trim()
-    // extract name before dash or colon
-    const namePart = txt.split(/[-–—:]/)[0].trim().toLowerCase()
-    const wine = nameMap.get(namePart)
+    if (exactMatches.length >= 8) break;
+  
+    // Remove leading number and trim
+    const fullLine = line.replace(/^\s*\d+\.\s*/, '').trim().toLowerCase();
+  
+    // Match full line to full product name (case-insensitive)
+    const wine = nameMap.get(fullLine);
+  
     if (wine) {
-      exactMatches.push(wine)
+      exactMatches.push(wine);
     }
   }
+  
   if (exactMatches.length > 0) {
-    return exactMatches
+    return exactMatches;
   }
-  // 3) Fallback to name-based substring matching (longer names first)
-  const recsByName: Wine[] = []
-  const responseText = response.toLowerCase()
+  
+  // Optional fallback logic (optional but good to keep)
+  const recsByName: Wine[] = [];
+  const responseText = response.toLowerCase();
+  
   const winesByNameLength = [...wines].sort(
     (a, b) => (b.Product_name?.length || 0) - (a.Product_name?.length || 0)
-  )
+  );
+  
   for (const wine of winesByNameLength) {
-    if (recsByName.length >= 8) break
-    const name = wine.Product_name?.toLowerCase()
+    if (recsByName.length >= 8) break;
+  
+    const name = wine.Product_name?.toLowerCase();
     if (name && responseText.includes(name)) {
-      recsByName.push(wine)
+      recsByName.push(wine);
     }
   }
   if (recsByName.length > 0) {
