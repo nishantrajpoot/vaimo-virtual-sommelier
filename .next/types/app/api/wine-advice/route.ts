@@ -1,4 +1,4 @@
-// File: C:\Users\lamba\Downloads\Repo\virtual-sommelier\app\api\wine-advice\route.ts
+// File: /home/nishant/project/v0/UI/vaimo-virtual-sommelier/app/api/wine-advice/route.ts
 import * as entry from '../../../../../app/api/wine-advice/route.js'
 import type { NextRequest } from 'next/server.js'
 

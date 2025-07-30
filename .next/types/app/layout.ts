@@ -1,4 +1,4 @@
-// File: C:\Users\lamba\Downloads\Repo\virtual-sommelier\app\layout.tsx
+// File: /home/nishant/project/v0/UI/vaimo-virtual-sommelier/app/layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

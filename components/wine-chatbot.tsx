@@ -309,28 +309,9 @@ export function WineChatbot({ isOpen, onClose, onLanguageChange }: WineChatbotPr
       // Recommendations and food pairing based on recommendations
       if (result.recommendations && result.recommendations.length > 0) {
         console.log('inside recommendations', result.recommendations)
-        // Ensure we have up to 16 recommendations by padding if needed
+        // Use only AI-recommended wines without padding
         const recs = result.recommendations as WineType[]
-        // Build full list for pagination, aiming for 16, preferring same-color wines
         const fullRecs = [...recs]
-        console.log('fullRecs-1', fullRecs)
-        if (fullRecs.length < 16) {
-          const lowerQuery = userQuery.toLowerCase()
-          let colorKey: string | null = null
-          if (lowerQuery.includes("red")) colorKey = "red"
-          else if (lowerQuery.includes("white")) colorKey = "white"
-          else if (lowerQuery.includes("ros")) colorKey = "rose"
-          else if (lowerQuery.includes("sparkling") || lowerQuery.includes("bubbl")) colorKey = "sparkling"
-          // Filter candidates by color if specified, otherwise all
-          const remaining = (wineData[language] as WineType[]).filter(
-            (w) => !fullRecs.find((r) => r.id === w.id)
-              && (colorKey ? w.Color?.toLowerCase() === colorKey : true)
-          )
-          for (const w of remaining) {
-            if (fullRecs.length >= 16) break
-            fullRecs.push(w)
-          }
-        }
         setLastRecs(fullRecs)
         // Derive food pairings from recommended wines
         const allPairs = recs.flatMap((w) => w.food_pairing || [])
