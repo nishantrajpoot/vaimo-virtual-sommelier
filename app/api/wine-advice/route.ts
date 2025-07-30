@@ -229,8 +229,19 @@ function extractRecommendationsFromResponse(response: string, wines: Wine[]): Wi
 }
 
 function getSystemPrompt(language: Language, wines: Wine[]): string {
+
+  function shuffleArray<T>(array: T[]): T[] {
+    const shuffled = array.slice(); // make a copy to avoid mutating original
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }
+  
+
   // Provide a limited wine dataset sample as context (reduce token size)
-  const wineDataSample = wines.slice(0, 360).map((wine) => ({
+  const wineDataSample = shuffleArray(wines).slice(0, 360).map((wine) => ({
     id: wine.id,
     name: wine.Product_name,
     price: wine.Price,
