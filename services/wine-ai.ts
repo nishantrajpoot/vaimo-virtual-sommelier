@@ -245,6 +245,8 @@ function getSystemPrompt(language: Language, wines: Wine[]): string {
     name: wine.Product_name,
     price: wine.Price,
     volume: wine.Volume,
+    color: wine.Color,
+    type: wine.Type_of_wine,
     discount: wine.promotion,
     link: wine.URL,
   }))
