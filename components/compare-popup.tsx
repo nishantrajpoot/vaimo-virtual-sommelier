@@ -17,7 +17,7 @@ interface ComparePopupProps {
 }
 
 
-export function ComparePopup({ wines, language, recommendationText, isOpen, onClose }: ComparePopupProps) {
+export function ComparePopup({ wines, language, recommendationComments, isOpen, onClose }: ComparePopupProps) {
   // Prevent background scroll when open
   useEffect(() => {
     if (isOpen) document.body.style.overflow = 'hidden'
