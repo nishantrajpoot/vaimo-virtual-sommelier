@@ -2707,32 +2707,6 @@
     "Vintage": "2018"
   },
   {
-    "id": "4bdcfe7c-11b4-4d65-9104-4f56d5d3b9ae",
-    "Product_name": "Chateau Terres Douces | Bordeaux | 75 cl | Delhaize",
-    "Price": "9,99 €",
-    "Price_per_liter": "13,32 €/l",
-    "Wine_Varieties": "55% Semillon, 40% Sauvignon Blanc, 5% Muscadel",
-    "vegetarian": "True",
-    "vegan": "True",
-    "food_pairing": [
-      "Fish",
-      "Poultry",
-      "Seafood"
-    ],
-    "image_URL": "https://static.delhaize.be/medias/sys_master/h30/h00/12431082192926.jpg",
-    "URL": "https://www.delhaize.be/fr/shop/Vins-and-bulles/Vins-blancs/France/Bordeaux/Bordeaux/p/S2021122400330800000",
-    "country_origin": "France",
-    "Wine_Description": "",
-    "promotion": "2+1 Free",
-    "Alcohol_percentage": "12",
-    "Volume": "0.750l",
-    "Type_of_Cap": "Natural cork",
-    "Type_of_wine": "dry",
-    "Color": "White",
-    "Type_of_Box": "Cardboard",
-    "Vintage": "2021"
-  },
-  {
     "id": "29d311a5-6811-4cd2-8ad3-56f7f1c2b6d1",
     "Product_name": "Duval-Leroy | Champagne | Brut | 75 cl | Delhaize",
     "Price": "34,99 €",
@@ -2875,28 +2849,6 @@
     "Type_of_wine": "demi-sec",
     "Color": "White",
     "Type_of_Box": "Cardboard",
-    "Vintage": null
-  },
-  {
-    "id": "d2dea6c3-4b25-492e-bdaf-1b5e84b080b1",
-    "Product_name": "Chateau Terres Douces | Bordeaux | 37,5 cl | Delhaize",
-    "Price": "3,49 €",
-    "Price_per_liter": "9,31 €/l",
-    "Wine_Varieties": "",
-    "vegetarian": "False",
-    "vegan": "False",
-    "food_pairing": [],
-    "image_URL": "https://static.delhaize.be/medias/sys_master/products/h5e/h65/13110192078878.jpg",
-    "URL": "https://www.delhaize.be/fr/shop/Vins-and-bulles/Vins-roses/France/Bordeaux/Bordeaux/p/S2024112200803740000",
-    "country_origin": "France",
-    "Wine_Description": "",
-    "promotion": "2+1 Free",
-    "Alcohol_percentage": null,
-    "Volume": null,
-    "Type_of_Cap": null,
-    "Type_of_wine": null,
-    "Color": null,
-    "Type_of_Box": null,
     "Vintage": null
   },
   {

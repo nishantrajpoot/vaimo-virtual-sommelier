@@ -2707,32 +2707,6 @@
     "Millésime": "2018"
   },
   {
-    "id": "8077116a-5a87-4957-a869-e6fe3ddf237d",
-    "Product_name": "Chateau Terres Douces | Bordeaux | 75 cl | Delhaize",
-    "Price": "9,99 €",
-    "Price_per_liter": "13,32 €/l",
-    "Wine_Varieties": "55% Semillon, 40% Sauvignon Blanc, 5% Muscadel",
-    "vegetarian": "True",
-    "vegan": "True",
-    "food_pairing": [
-      "Vis",
-      "Gevogelte",
-      "Zeevruchten"
-    ],
-    "image_URL": "https://static.delhaize.be/medias/sys_master/h30/h00/12431082192926.jpg",
-    "URL": "https://www.delhaize.be/fr/shop/Vins-and-bulles/Vins-blancs/France/Bordeaux/Bordeaux/p/S2021122400330800000",
-    "country_origin": "Frankrijk",
-    "Wine_Description": "",
-    "promotion": "2+1 Gratis",
-    "Alcohol_percentage": "12",
-    "Volume": "0.750l",
-    "Type_of_Cap": "Natuurlijke kurk",
-    "Type_of_wine": "droog",
-    "Color": "Wit",
-    "Type_of_Box": "Karton",
-    "Millésime": "2021"
-  },
-  {
     "id": "07ac367d-7995-4538-b6ee-09e7011b04b4",
     "Product_name": "Duval-Leroy | Champagne | Brut | 75 cl | Delhaize",
     "Price": "34,99 €",
@@ -2875,28 +2849,6 @@
     "Type_of_wine": "demi-droog",
     "Color": "Wit",
     "Type_of_Box": "Karton",
-    "Millésime": null
-  },
-  {
-    "id": "a97f8005-6c2b-45fc-ae13-989769f2b53c",
-    "Product_name": "Chateau Terres Douces | Bordeaux | 37,5 cl | Delhaize",
-    "Price": "3,49 €",
-    "Price_per_liter": "9,31 €/l",
-    "Wine_Varieties": "",
-    "vegetarian": "False",
-    "vegan": "False",
-    "food_pairing": [],
-    "image_URL": "https://static.delhaize.be/medias/sys_master/products/h5e/h65/13110192078878.jpg",
-    "URL": "https://www.delhaize.be/fr/shop/Vins-and-bulles/Vins-roses/France/Bordeaux/Bordeaux/p/S2024112200803740000",
-    "country_origin": "Frankrijk",
-    "Wine_Description": "",
-    "promotion": "2+1 Gratis",
-    "Alcohol_percentage": null,
-    "Volume": null,
-    "Type_of_Cap": null,
-    "Type_of_wine": null,
-    "Color": null,
-    "Type_of_Box": null,
     "Millésime": null
   },
   {
