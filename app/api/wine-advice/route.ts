@@ -84,7 +84,7 @@ Respond with wine advice and explain your recommendations.`
         model: openai("gpt-4o"),
         system: systemPrompt,
         prompt: userPrompt,
-        maxTokens: 500,
+        maxTokens: 1000,
       })
 
       // Extract wine recommendations from GPT response
