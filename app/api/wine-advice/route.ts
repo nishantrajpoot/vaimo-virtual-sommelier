@@ -230,7 +230,7 @@ function extractRecommendationsFromResponse(response: string, wines: Wine[]): Wi
 
 function getSystemPrompt(language: Language, wines: Wine[]): string {
   // Provide a limited wine dataset sample as context (reduce token size)
-  const wineDataSample = wines.slice(0, 300).map((wine) => ({
+  const wineDataSample = wines.slice(0, 360).map((wine) => ({
     id: wine.id,
     name: wine.Product_name,
     price: wine.Price,
