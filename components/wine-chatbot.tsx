@@ -591,14 +591,7 @@ export function WineChatbot({ isOpen, onClose, onLanguageChange }: WineChatbotPr
         <ComparePopup
           wines={lastRecs}
           language={language}
-          recommendationText={
-            messages
-              .slice()
-              .reverse()
-              .find(
-                (m) => m.role === 'assistant' && m.content && m.content !== 'SHOW_MORE'
-              )?.content || ''
-          }
+          recommendationComments={recComments}
           isOpen={showCompare}
           onClose={() => setShowCompare(false)}
         />

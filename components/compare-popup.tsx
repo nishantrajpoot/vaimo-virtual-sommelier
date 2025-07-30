@@ -10,7 +10,8 @@ import { delhaizeCart } from "@/utils/delhaize-cart"
 interface ComparePopupProps {
   wines: Wine[]
   language: Language
-  recommendationText: string
+  // Recommendation comments aligned by index
+  recommendationComments?: string[]
   isOpen: boolean
   onClose: () => void
 }
@@ -50,6 +51,7 @@ export function ComparePopup({ wines, language, recommendationText, isOpen, onCl
                 <th className="border p-2 whitespace-nowrap">Origin</th>
                 <th className="border p-2 whitespace-nowrap">Vintage</th>
                 <th className="border p-2 whitespace-nowrap">Promo</th>
+                <th className="border p-2 whitespace-nowrap">Recommendation</th>
                 <th className="border p-2 whitespace-nowrap">{getTranslation(language, 'foodPairing').replace(/:$/, '')}</th>
                 <th className="border p-2 whitespace-nowrap">Details</th>
                 <th className="border p-2 whitespace-nowrap text-center">
@@ -99,6 +101,11 @@ export function ComparePopup({ wines, language, recommendationText, isOpen, onCl
                   ) : (
                     '-'
                   )}
+                </td>
+                <td className="border p-2 text-sm">
+                  {recommendationComments && recommendationComments[idx]
+                    ? recommendationComments[idx]
+                    : '-'}
                 </td>
                 <td className="border p-2 text-sm pr-4 text-right">{(wine.food_pairing || []).join(', ')}</td>
                 <td className="border p-2 text-sm text-center">

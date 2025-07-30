@@ -241,7 +241,7 @@ function getSystemPrompt(language: Language, wines: Wine[]): string {
   
 
   // Provide a limited wine dataset sample as context (reduce token size)
-  const wineDataSample = shuffleArray(wines).slice(0, 360).map((wine) => ({
+  const wineDataSample = shuffleArray(wines).slice(0, 328).map((wine) => ({
     id: wine.id,
     name: wine.Product_name,
     price: wine.Price,
