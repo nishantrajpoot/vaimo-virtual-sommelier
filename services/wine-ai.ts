@@ -103,14 +103,12 @@ function extractRecommendationsFromResponse(response: string, wines: Wine[]): Wi
   */
 
   const idSection = response.match(/RECOMMENDED_IDS:?\s*\[([^\]]+)\]/i)
-  console.log('idSection-', idSection)
   if (idSection) {
     const ids = idSection[1]
       .split(/[,\s]+/)
       .map((s) => s.replace(/"/g, "").trim())
       .filter(Boolean)
 
-      console.log('ids-', ids)
       // Create a quick ID → wine lookup map
     const wineMap = new Map(wines.map(w => [w.id, w]))
 
@@ -118,7 +116,6 @@ function extractRecommendationsFromResponse(response: string, wines: Wine[]): Wi
     const foundOrdered = ids
       .map(id => wineMap.get(id))
       .filter((wine): wine is Wine => Boolean(wine)) // remove undefined
-      console.log('foundOrdered-', foundOrdered)
     if (foundOrdered.length > 0) return foundOrdered.slice(0, 8)
   }
 
@@ -283,8 +280,7 @@ function getSystemPrompt(language: Language, wines: Wine[]): string {
     volume: wine.Volume,
     color: wine.Color,
     type: wine.Type_of_wine,
-    discount: wine.promotion,
-    link: wine.URL,
+    discount: wine.promotion
   }))
 
   const prompts = {
