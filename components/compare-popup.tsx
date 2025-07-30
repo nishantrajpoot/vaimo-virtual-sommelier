@@ -50,7 +50,6 @@ export function ComparePopup({ wines, language, recommendationText, isOpen, onCl
                 <th className="border p-2 whitespace-nowrap">Origin</th>
                 <th className="border p-2 whitespace-nowrap">Vintage</th>
                 <th className="border p-2 whitespace-nowrap">Promo</th>
-                <th className="border p-2 whitespace-nowrap">Recommendation</th>
                 <th className="border p-2 whitespace-nowrap">{getTranslation(language, 'foodPairing').replace(/:$/, '')}</th>
                 <th className="border p-2 whitespace-nowrap">Details</th>
                 <th className="border p-2 whitespace-nowrap text-center">
@@ -100,32 +99,6 @@ export function ComparePopup({ wines, language, recommendationText, isOpen, onCl
                   ) : (
                     '-'
                   )}
-                </td>
-                <td className="border p-2 text-sm text-left">
-                  {(() => {
-                    const fullText = recommendationText || '';
-                    const lines = fullText.split(/\r?\n/);
-                    const wineName = wine.Product_name.trim().toLowerCase();
-                    console.log('wineName', wineName)
-                    console.log('lines', lines)
-                    console.log('fullText', fullText)
-                    // Go through each line to find a title line that contains the wine name
-                    for (let i = 0; i < lines.length; i++) {
-                      const currentLine = lines[i].trim().toLowerCase();
-
-                      // Use includes or better yet, fuzzy matching if names differ slightly
-                      if (currentLine.includes(wineName)) {
-                        const nextLine = lines[i + 1]?.trim();
-                        if (nextLine) {
-                          // Remove leading dash, colon, or bullet characters
-                          const cleaned = nextLine.replace(/^[-–—:\s]+/, '').trim();
-                          return cleaned;
-                        }
-                      }
-                    }
-
-                    return 'No description found.';
-                  })()}
                 </td>
                 <td className="border p-2 text-sm pr-4 text-right">{(wine.food_pairing || []).join(', ')}</td>
                 <td className="border p-2 text-sm text-center">
