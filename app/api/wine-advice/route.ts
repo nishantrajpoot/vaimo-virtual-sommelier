@@ -246,7 +246,8 @@ function getSystemPrompt(language: Language, wines: Wine[]): string {
     name: wine.Product_name,
     price: wine.Price,
     volume: wine.Volume,
-    discount: wine.promotion
+    discount: wine.promotion,
+    color: wine.Color
   }))
 
   const prompts = {
